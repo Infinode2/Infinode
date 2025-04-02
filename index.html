@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinode</title>
+    <style>
+        :root {
+            --dark-space: #0f0f17;
+            --deep-cosmos: #1a1a2e;
+            --neon-blue: #00f5ff;
+            --electric-purple: #8a2be2;
+            --plasma-pink: #ff00ff;
+            --light-void: #e2e2e2;
+        }
+        
+        body {
+            font-family: 'Montserrat', 'Arial', sans-serif;
+            line-height: 1.7;
+            color: var(--light-void);
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, var(--dark-space), var(--deep-cosmos));
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: rgba(15, 15, 23, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 3rem 0;
+            text-align: center;
+            margin-bottom: 3rem;
+            border-bottom: 1px solid rgba(138, 43, 226, 0.3);
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin: 0;
+            background: linear-gradient(90deg, var(--neon-blue), var(--electric-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 2px;
+        }
+        
+        .tagline {
+            font-size: 1.3rem;
+            opacity: 0.8;
+            margin-top: 1rem;
+            color: var(--light-void);
+        }
+        
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin: 4rem 0;
+        }
+        
+        .service-card {
+            background: rgba(26, 26, 46, 0.6);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(138, 43, 226, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--neon-blue), var(--plasma-pink));
+            z-index: -1;
+            border-radius: 14px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 245, 255, 0.2);
+        }
+        
+        .service-card:hover::before {
+            opacity: 0.7;
+        }
+        
+        .service-name {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: white;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .service-name::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--neon-blue), transparent);
+        }
+        
+        .service-description {
+            margin-bottom: 1.5rem;
+            color: rgba(226, 226, 226, 0.8);
+            font-weight: 300;
+        }
+        .badge-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--electric-purple), var(--plasma-pink));
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 0.8rem;
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+        .badge-service {
+            background: linear-gradient(90deg, var(--neon-blue), var(--electric-purple));
+        }
+        
+        .badge-stake {
+            background: linear-gradient(90deg, var(--plasma-pink), var(--electric-purple));
+        }
+        
+        .badge:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 245, 255, 0.4);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            background: rgba(15, 15, 23, 0.8);
+            margin-top: 5rem;
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--neon-blue), transparent);
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .services {
+                grid-template-columns: 1fr;
+            }
+        }
+        .contact-section {
+            background: rgba(26, 26, 46, 0.6);
+            border-radius: 12px;
+            padding: 3rem;
+            margin: 4rem 0;
+            text-align: center;
+            border: 1px solid rgba(138, 43, 226, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--neon-blue), var(--plasma-pink));
+            z-index: -1;
+            border-radius: 14px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .contact-section:hover::before {
+            opacity: 0.3;
+        }
+        
+        .social-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+            filter: brightness(0) invert(1);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            background: rgba(15, 15, 23, 0.8);
+            margin-top: 5rem;
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--neon-blue), transparent);
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .services {
+                grid-template-columns: 1fr;
+            }
+            
+            .service-image {
+                height: 180px;
+            }
+            
+            .contact-section {
+                padding: 2rem 1rem;
+            }
+            
+            .social-links {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .social-link {
+                width: 80%;
+                justify-content: center;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Infinode</h1>
+            <p class="tagline">"Decentralize Today for a Trustworthy Tomorrow, Securing Progress, Linking Trust"</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="services">
+            <div class="service-card">
+                <h2 class="service-name">Kilchain</h2>
+                <p class="service-description">Cutting-edge blockchain technology solutions with next-generation security and efficiency.</p>
+                <div class="badge-container">
+                    <a href="https://docs.kiiglobal.io/docs/validate-the-network/run-a-validator-full-node/step-by-step-guide" class="badge badge-service">Service</a>
+                    <a href="https://explorer.kiichain.io/account/kii1q5fec34ggpn7vgry72kl7m866vae5rugrr3fph" class="badge badge-stake">Stake</a>
+                </div>
+            </div>
+            
+            <div class="service-card">
+                <h2 class="service-name">Dill</h2>
+                <p class="service-description">Revolutionary digital platforms that transform business operations and user experiences.</p>
+                <div class="badge-container">
+                    <a href="https://github.com/DillLabs/launch-dill-node?tab=readme-ov-file#add-a-validator-to-existing-node" class="badge badge-service">Service</a>
+                    <a href="https://alps.dill.xyz/validators?pubkey=0xac8a263e550f5785d4e2ac67ce335c547abd8bce0dadc551e7dd74781afd413a1d3c7e87f18ad62433b792f91da9a61f" class="badge badge-stake">Stake</a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <h2 class="service-name">Privasea</h2>
+                <p class="service-description">Revolutionary digital platforms that transform business operations and user experiences.</p>
+                <div class="badge-container">
+                    <a href="#" class="badge badge-service">Service</a>
+                    <a href="#" class="badge badge-stake">Stake</a>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <!-- Add this in the head section for Font Awesome icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<!-- Contact & Social Section -->
+<div class="contact-section">
+    <h2>Contact & Social</h2>
+    <p>Connect with us through our social channels or reach out directly</p>
+    
+    <div class="social-links">
+        <!-- Email -->
+        <a href="devaarkana220@gmail.com" class="social-link">
+            <i class="fas fa-envelope social-icon"></i>
+            Email
+        </a>
+        
+        <!-- Twitter -->
+        <a href="https://x.com/Infinode2" class="social-link">
+            <i class="fab fa-twitter social-icon"></i>
+            Twitter
+        </a>
+        
+        <!-- LinkedIn -->
+        <a href="https://discord.com/infinode" class="social-link">
+            <i class="fab fa-discord social-icon"></i>
+            Discord
+        </a>
+        
+        <!-- GitHub -->
+        <a href="https://github.com/Infinode2" class="social-link">
+            <i class="fab fa-github social-icon"></i>
+            GitHub
+        </a>
+        
+        <!-- Telegram -->
+        <a href="https://telegram.me/Infinode2" class="social-link">
+            <i class="fab fa-telegram-plane social-icon"></i>
+            Telegram
+        </a>
+    </div>
+</div>
+
+<style>
+    /* Social Links Styling */
+    .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 2rem;
+        flex-wrap: wrap;
+    }
+    
+    .social-link {
+        display: flex;
+        align-items: center;
+        color: #e2e2e2;
+        text-decoration: none;
+        padding: 0.8rem 1.5rem;
+        border-radius: 30px;
+        background: rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+        border: 1px solid rgba(138, 43, 226, 0.3);
+    }
+    
+    .social-link:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 245, 255, 0.2);
+    }
+    
+    .social-icon {
+        font-size: 1.2rem;
+        margin-right: 10px;
+        color: #00f5ff; /* Neon blue */
+    }
+    
+    /* Specific icon colors */
+    .fa-twitter { color: #1DA1F2; }
+    .fa-discord { color: #0077B5; }
+    .fa-github { color: #f5f5f5; }
+    .fa-telegram-plane { color: #0088cc; }
+    .fa-envelope { color: #EA4335; }
+    
+    /* Mobile responsive */
+    @media (max-width: 768px) {
+        .social-links {
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .social-link {
+            width: 80%;
+            justify-content: center;
+        }
+    }
+</style>
+</div>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2023 Infinode. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>
+    
